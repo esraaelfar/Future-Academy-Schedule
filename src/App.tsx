@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import type { Booking } from './types';
-import { ROOMS, DAYS, STATUS } from './constants';
+import { ROOMS, DAYS } from './constants';
 import BookingForm from './components/BookingForm';
 import ScheduleTable from './components/ScheduleTable';
 
