@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import type { Booking, Room } from '../types';
-import { DAYS } from '../constants';
+import { DAYS, STATUS } from '../constants';
 
 interface ScheduleTableProps {
   bookings: Booking[];
@@ -9,8 +9,8 @@ interface ScheduleTableProps {
   onEditBooking: (id: string) => void;
 }
 
-const START_HOUR = 8;
-const END_HOUR = 22; // Represents the 10 PM hour block
+const START_HOUR = 9;
+const END_HOUR = 22; 
 
 const ScheduleTable: React.FC<ScheduleTableProps> = ({ bookings, rooms, onDeleteBooking, onEditBooking }) => {
   const timeSlots = useMemo(() => {
@@ -80,6 +80,16 @@ const ScheduleTable: React.FC<ScheduleTableProps> = ({ bookings, rooms, onDelete
       {DAYS.map(day => (
         <div key={day}>
           <h4 className="text-lg font-bold text-gray-300 mb-3 bg-gray-800/50 p-2 rounded-md">{day}</h4>
+          <div className="flex gap-6 mt-3 text-sm text-gray-300">
+            <div className="flex items-center gap-2">
+              <span className="w-4 h-4 rounded bg-sky-900/50 border-l-4 border-sky-500"></span>
+              <span>Regular Class</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-4 h-4 rounded bg-red-900/40 border-l-4 border-red-500"></span>
+              <span>Extra Class</span>
+            </div>
+          </div>
           <div className="overflow-x-auto">
             <table className="min-w-full border border-gray-700">
               <thead className="bg-gray-900">
@@ -107,7 +117,15 @@ const ScheduleTable: React.FC<ScheduleTableProps> = ({ bookings, rooms, onDelete
                         }
                         if (cellData && cellData.booking) {
                           return (
-                            <td key={room.id} rowSpan={cellData.duration} className="border-r border-gray-700 bg-sky-900/50 border-l-4 border-sky-500 p-2 align-top">
+                              <td
+                                key={room.id}
+                                rowSpan={cellData.duration}
+                                className={`border-r border-gray-700 p-2 align-top ${
+                                  cellData.booking.status === STATUS[1]
+                                    ? 'bg-red-900/40 border-l-4 border-red-500'   // Extra
+                                    : 'bg-sky-900/50 border-l-4 border-sky-500'  // Regular
+                                }`}
+                              >
                               <div className="h-full flex flex-col justify-between">
                                 <div className="space-y-1">
                                   <p className="font-semibold text-sm text-sky-200">{cellData.booking.groupName}</p>

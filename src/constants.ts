@@ -8,3 +8,5 @@ export const ROOMS: Room[] = [
 ];
 
 export const DAYS = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+
+export const STATUS = ['Regular', 'Extra'];

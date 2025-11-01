@@ -12,4 +12,5 @@ export interface Booking {
   timeTo: string;
   roomId: string;
   studentsCount: number;
+  statues: string;
 }

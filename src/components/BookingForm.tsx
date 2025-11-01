@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import type { Booking } from '../types';
-import { DAYS, ROOMS } from '../constants';
+import { DAYS, ROOMS, STATUS } from '../constants';
 
 interface BookingFormProps {
   onAddBooking: (booking: Omit<Booking, 'id'>) => { success: boolean; message: string };
@@ -17,6 +17,7 @@ const initialFormState = {
   timeTo: '11:00',
   roomId: ROOMS[0].id,
   studentsCount: 10,
+  status: STATUS[0],
 };
 
 const BookingForm: React.FC<BookingFormProps> = ({ onAddBooking, onUpdateBooking, editingBooking, clearEditing }) => {
@@ -33,6 +34,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ onAddBooking, onUpdateBooking
         timeTo: editingBooking.timeTo,
         roomId: editingBooking.roomId,
         studentsCount: editingBooking.studentsCount,
+        status: editingBooking.status,
       });
       setMessage(null);
     } else {
@@ -119,6 +121,13 @@ const BookingForm: React.FC<BookingFormProps> = ({ onAddBooking, onUpdateBooking
       <div>
         <label htmlFor="studentsCount" className="block text-sm font-medium text-gray-400 mb-1">Number of Students</label>
         <input type="number" id="studentsCount" name="studentsCount" value={formData.studentsCount} onChange={handleChange} min="1" required className="w-full px-3 py-2 bg-gray-700 border border-gray-600 text-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
+      </div>
+
+      <div>
+        <label htmlFor="status" className="block text-sm font-medium text-gray-400 mb-1">Status</label>
+        <select id="status" name="status" value={formData.status} onChange={handleChange} className="w-full px-3 py-2 bg-gray-700 border border-gray-600 text-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+          {STATUS.map(status => <option key={status} value={status}>{status}</option>)}
+        </select>
       </div>
 
       <div className="flex items-center gap-4">

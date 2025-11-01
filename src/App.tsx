@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import type { Booking } from './types';
-import { ROOMS, DAYS } from './constants';
+import { ROOMS, DAYS, STATUS } from './constants';
 import BookingForm from './components/BookingForm';
 import ScheduleTable from './components/ScheduleTable';
 
@@ -15,10 +15,10 @@ const App: React.FC = () => {
             console.error("Failed to parse bookings from localStorage", error);
         }
         return [
-            { id: '1', groupName: 'Arduino Code', instructorName: 'Eng. Esraa', day: 'Saturday', timeFrom: '10:00', timeTo: '12:00', roomId: 'A', studentsCount: 8 },
-            { id: '2', groupName: 'Web', instructorName: 'Eng. Sarah Mohamed', day: 'Sunday', timeFrom: '10:00', timeTo: '12:00', roomId: 'B', studentsCount: 10 },
-            { id: '3', groupName: 'Spike', instructorName: 'Eng. Fatima Hassan', day: 'Monday', timeFrom: '11:00', timeTo: '13:00', roomId: 'C', studentsCount: 9 },
-            { id: '4', groupName: 'Arduino Block', instructorName: 'Eng. Khalid Youssef', day: 'Thursday', timeFrom: '12:30', timeTo: '14:00', roomId: 'D', studentsCount: 10 },
+            { id: '1', groupName: 'Arduino Code', instructorName: 'Eng. Esraa', day: 'Saturday', timeFrom: '10:00', timeTo: '12:00', roomId: 'A', studentsCount: 8, status: 'Regular' },
+            { id: '2', groupName: 'Web', instructorName: 'Eng. Sarah Mohamed', day: 'Sunday', timeFrom: '10:00', timeTo: '12:00', roomId: 'B', studentsCount: 10, status: 'Extra' },
+            { id: '3', groupName: 'Spike', instructorName: 'Eng. Fatima Hassan', day: 'Monday', timeFrom: '11:00', timeTo: '13:00', roomId: 'C', studentsCount: 9, status: 'Regular' },
+            { id: '4', groupName: 'Arduino Block', instructorName: 'Eng. Khalid Youssef', day: 'Thursday', timeFrom: '12:30', timeTo: '14:00', roomId: 'D', studentsCount: 10, status: 'Regular' },
         ];
     });
 
