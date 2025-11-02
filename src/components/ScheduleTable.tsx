@@ -39,12 +39,15 @@ const ScheduleTable: React.FC<ScheduleTableProps> = ({ bookings, rooms, onDelete
     bookings.forEach(booking => {
       const [fromHour, fromMinute] = booking.timeFrom.split(':').map(Number);
       const [toHour, toMinute] = booking.timeTo.split(':').map(Number);
-
+      
       const startMinutes = fromHour * 60 + fromMinute;
       const endMinutes = toHour * 60 + toMinute;
+
+      if (endMinutes <= startMinutes) return;
+
       const durationInMinutes = endMinutes - startMinutes;
       const durationInSlots = Math.ceil(durationInMinutes / 30);
-      
+
       const startTimeSlot = `${fromHour.toString().padStart(2, '0')}:${fromMinute.toString().padStart(2, '0')}`;
       const startIndex = timeSlots.indexOf(startTimeSlot);
 

@@ -39,7 +39,7 @@ const App: React.FC = () => {
     const startB = timeToMinutes(fromB);
     const endB = timeToMinutes(toB);
 
-    return startA < endB && endA > startB;
+    return startA < endB && startB < endA;
     };
 
     const handleAddBooking = (newBookingData: Omit<Booking, 'id'>) => {
