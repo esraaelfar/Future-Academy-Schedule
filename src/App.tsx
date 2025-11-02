@@ -28,13 +28,18 @@ const App: React.FC = () => {
         localStorage.setItem('bookings', JSON.stringify(bookings));
     }, [bookings]);
 
-    useEffect(() => {
-        localStorage.setItem('bookings', JSON.stringify(bookings));
-        console.log("📅 Current bookings:", bookings);
-        }, [bookings]);
+    const timeToMinutes = (t: string) => {
+    const [h, m] = t.split(':').map(Number);
+    return h * 60 + m;
+    };
 
     const overlaps = (fromA: string, toA: string, fromB: string, toB: string): boolean => {
-        return fromA < toB && toA > fromB;
+    const startA = timeToMinutes(fromA);
+    const endA = timeToMinutes(toA);
+    const startB = timeToMinutes(fromB);
+    const endB = timeToMinutes(toB);
+
+    return startA < endB && endA > startB;
     };
 
     const handleAddBooking = (newBookingData: Omit<Booking, 'id'>) => {
@@ -89,7 +94,7 @@ const App: React.FC = () => {
   return (
     <div className="container mx-auto p-4 md:p-8">
       <header className="text-center mb-8">
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-100">Academy Room Booking System</h1>
+        <h1 className="text-3xl md:text-4xl font-bold text-gray-100">Future Academy Room Booking System</h1>
       </header>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
