@@ -111,8 +111,8 @@ const ScheduleTable: React.FC<ScheduleTableProps> = ({ bookings, rooms, onDelete
                   const period = hour24 >= 12 ? 'PM' : 'AM';
                   
                   return (
-                    <tr key={time} className="h-10">
-                      <td className="px-2 py-1 align-top border-r border-gray-700 bg-gray-900 text-xs text-gray-400 font-semibold">{`${hour12}:${minuteStr} ${period}`}</td>
+                    <tr key={time} className="h-12">
+                      <td className="px-2 py-0 align-top border-r border-gray-700 bg-gray-900 text-xs text-gray-400 font-semibold">{`${hour12}:${minuteStr} ${period}`}</td>
                       {rooms.map(room => {
                         const cellData = scheduleGrid[day]?.[time]?.[room.id];
                         if (cellData === null) {
